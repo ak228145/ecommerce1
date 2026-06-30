@@ -40,7 +40,7 @@ app.use(cors({
 app.get('/', (req, res) => {
   res.send('API is running with CORS enabled');
 });
-
+app.listen(process.env.PORT||3000);
 
 app.use(cookieParser());
 app.use(express.json());
