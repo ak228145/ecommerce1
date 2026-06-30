@@ -28,9 +28,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173",
-      "http://localhost:5174",
-      "https://ecommerce-two-lime-79.vercel.app/auth/login"],
+    origin: ["https://ecommerce-client-8wup.onrender.com"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -42,6 +40,7 @@ app.use(
     credentials: true,
   })
 );
+app.get('/', (req, res) => res.send('API is running'));
 
 app.use(cookieParser());
 app.use(express.json());
