@@ -1,5 +1,7 @@
+const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -21,26 +23,23 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Install: npm install cors
-const express = require('express');
-const cors = require('cors');
-const app = express();
-
-
-app.use(cors({
-  origin: 'https://ecommerce-client-8wup.onrender.com',
-   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-     allowedHeaders: ['Content-Type', 'Authorization'],
-     credentials: true
-}));
-
-
-app.get('/', (req, res) => {
-  res.send('API is running with CORS enabled');
-});
-app.listen(process.env.PORT||3000);
+app.use(
+  cors({
+    origin: ["http://localhost:5173","http://localhost:5174"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cache-Control",
+      "Expires",
+      "Pragma",
+    ],
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
