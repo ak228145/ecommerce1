@@ -30,7 +30,9 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'https://ecommerce-client-8wup.onrender.com'
+  origin: 'https://ecommerce-client-8wup.onrender.com',
+   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+     credentials: true
 }));
 
 
